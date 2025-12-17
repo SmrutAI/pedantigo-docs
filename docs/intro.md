@@ -1,47 +1,68 @@
 ---
 sidebar_position: 1
+slug: /
 ---
 
-# Tutorial Intro
+# Welcome to Pedantigo
 
-Let's discover **Docusaurus in less than 5 minutes**.
+**Pedantigo** is a Pydantic-inspired validation library for Go. It brings the elegance of Python's Pydantic to Go with struct tag-based validation, auto-generated JSON schemas, and high-performance caching.
 
-## Getting Started
+## Why Pedantigo?
 
-Get started by **creating a new site**.
+- **Familiar API**: If you've used Pydantic, you'll feel right at home
+- **Struct Tags**: Go-idiomatic validation using struct tags
+- **JSON Schema**: Auto-generate JSON schemas from your Go structs
+- **Performance**: Built-in caching delivers 240x speedup on schema generation
+- **Streaming**: Validate partial JSON as it streams (perfect for LLM outputs)
+- **Discriminated Unions**: Type-safe union types with automatic discrimination
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## Quick Example
 
-### What you'll need
+```go
+package main
 
-- [Node.js](https://nodejs.org/en/download/) version 20.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+import (
+    "fmt"
+    "github.com/smrutai/pedantigo"
+)
 
-## Generate a new site
+type User struct {
+    Name  string `json:"name" validate:"required,min=2,max=100"`
+    Email string `json:"email" validate:"required,email"`
+    Age   int    `json:"age" validate:"min=0,max=150"`
+}
 
-Generate a new Docusaurus site using the **classic template**.
+func main() {
+    jsonData := []byte(`{"name": "Alice", "email": "alice@example.com", "age": 30}`)
 
-The classic template will automatically be added to your project after you run the command:
+    // Unmarshal and validate in one call
+    user, errs := pedantigo.Unmarshal[User](jsonData)
+    if len(errs) > 0 {
+        fmt.Println("Validation errors:", errs)
+        return
+    }
 
-```bash
-npm init docusaurus@latest my-website classic
+    fmt.Printf("Valid user: %+v\n", user)
+}
 ```
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+## Features at a Glance
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+| Feature | Description |
+|---------|-------------|
+| **Struct Tags** | `validate:"required,email,min=18"` |
+| **JSON Schema** | Auto-generated with constraints |
+| **Caching** | 240x faster schema generation |
+| **Streaming** | Validate partial JSON |
+| **Unions** | Discriminated union types |
+| **Cross-field** | Validate relationships between fields |
 
-## Start your site
+## Next Steps
 
-Run the development server:
+- [Installation](./getting-started/installation) - Get Pedantigo installed
+- [Quick Start](./getting-started/quickstart) - Build your first validated struct
+- [Concepts](./concepts/validation) - Understand how Pedantigo works
 
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+:::tip Ready to dive in?
+Start with the [Installation guide](./getting-started/installation) to get Pedantigo running in minutes.
+:::
