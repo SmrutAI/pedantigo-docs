@@ -1,0 +1,165 @@
+---
+slug: introducing-pedantigo
+title: Introducing Pedantigo - Type-Safe Validation for Go
+authors: [smrutai]
+tags: [go, validation, release, pydantic]
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+**Pedantigo** brings Pydantic-inspired validation to Go with a simple, type-safe API. Define validation rules alongside your struct fields, and let Pedantigo handle the rest.
+
+{/* truncate */}
+
+## The Problem
+
+When building Go applications that consume JSON from external sources—APIs, user input, or AI agents—validation is critical. But most validation libraries require:
+
+- Separate validation functions for each struct
+- Manual error handling and message formatting
+- Boilerplate for schema generation
+- No caching, leading to repeated reflection overhead
+
+## The Solution: One-Line Validation
+
+```go
+type User struct {
+    Email string `json:"email" pedantigo:"required,email"`
+    Age   int    `json:"age" pedantigo:"min=18,max=120"`
+    Role  string `json:"role" pedantigo:"oneof=admin user guest"`
+}
+
+// One line - parse, validate, and unmarshal
+user, err := pedantigo.Unmarshal[User](jsonData)
+```
+
+That's it. No validator setup, no manual schema generation, no boilerplate.
+
+## Key Features
+
+### 100+ Built-in Constraints
+
+Pedantigo includes validators for common patterns:
+
+| Category | Examples |
+|----------|----------|
+| **String** | `required`, `email`, `url`, `uuid`, `alpha`, `alphanumeric` |
+| **Numeric** | `min`, `max`, `gt`, `gte`, `lt`, `lte`, `positive`, `negative` |
+| **Format** | `datetime`, `date`, `json`, `base64`, `isbn`, `credit_card` |
+| **Collection** | `minItems`, `maxItems`, `unique`, `dive` |
+| **Cross-field** | `eqfield`, `nefield`, `ltfield`, `required_if` |
+
+### JSON Schema Generation with 240x Speedup
+
+Generate JSON schemas from your Go structs with automatic caching:
+
+```go
+// First call: ~10ms (reflection + generation)
+schema := pedantigo.Schema[User]()
+
+// Subsequent calls: <100ns (cached)
+schema := pedantigo.Schema[User]()
+```
+
+### Streaming Validation for LLMs
+
+Validate partial JSON from streaming APIs (like OpenAI or Anthropic):
+
+```go
+parser := pedantigo.NewStreamParser[Response]()
+
+for chunk := range stream {
+    result := parser.Feed(chunk)
+    if result.Valid {
+        usePartialData(result.Data)
+    }
+}
+```
+
+### Two APIs for Different Needs
+
+<Tabs>
+  <TabItem value="simple" label="Simple API (80% of cases)" default>
+
+Global functions with automatic caching—no setup required:
+
+```go
+user, err := pedantigo.Unmarshal[User](jsonData)
+user, err := pedantigo.NewModel[User](inputMap)
+schema := pedantigo.Schema[User]()
+```
+
+  </TabItem>
+  <TabItem value="validator" label="Validator API (Advanced)">
+
+Explicit validator for custom options:
+
+```go
+validator := pedantigo.New[User](pedantigo.ValidatorOptions{
+    StrictMissingFields: true,
+    ExtraFields:         pedantigo.ExtraForbid,
+})
+user, err := validator.Unmarshal(jsonData)
+```
+
+  </TabItem>
+</Tabs>
+
+## Getting Started
+
+```bash
+go get github.com/smrutai/pedantigo
+```
+
+Then define your struct with validation tags:
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/smrutai/pedantigo"
+)
+
+type CreateUserRequest struct {
+    Email    string `json:"email" pedantigo:"required,email"`
+    Password string `json:"password" pedantigo:"required,minLength=8"`
+    Age      int    `json:"age" pedantigo:"min=13"`
+}
+
+func main() {
+    jsonData := []byte(`{
+        "email": "user@example.com",
+        "password": "securepass123",
+        "age": 25
+    }`)
+
+    user, err := pedantigo.Unmarshal[CreateUserRequest](jsonData)
+    if err != nil {
+        fmt.Println("Validation failed:", err)
+        return
+    }
+
+    fmt.Printf("Welcome, %s!\n", user.Email)
+}
+```
+
+## Why Pedantigo?
+
+| Feature | Pedantigo | Other Libraries |
+|---------|-----------|-----------------|
+| **Setup** | Zero config | Validator instance required |
+| **Schema caching** | Automatic (240x faster) | Manual or none |
+| **JSON Schema** | Built-in generation | External tools needed |
+| **Streaming** | Native support | Not supported |
+| **Dependencies** | 1 (`invopop/jsonschema`) | Multiple |
+
+## Learn More
+
+- [Documentation](https://pedantigo.dev)
+- [Quick Start Guide](/docs/getting-started/quickstart)
+- [Constraints Reference](/docs/concepts/constraints)
+- [GitHub Repository](https://github.com/SmrutAI/pedantigo)
+
+We built Pedantigo while developing [smrut.ai](https://smrut.ai), where reliable JSON validation is critical for AI agent interactions. We hope it helps your projects too!
