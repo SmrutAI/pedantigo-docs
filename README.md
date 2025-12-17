@@ -1,41 +1,123 @@
-# Website
+# Pedantigo Documentation
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+Documentation website for [Pedantigo](https://github.com/smrutai/pedantigo) - Pydantic-inspired validation for Go.
 
-## Installation
+Built with [Docusaurus](https://docusaurus.io/).
 
-```bash
-yarn
-```
-
-## Local Development
+## Quick Start
 
 ```bash
-yarn start
+npm install
+npm start
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+Open http://localhost:3000
 
-## Build
+## Daily Maintenance
+
+### Adding a New Doc Page
+
+1. Create a new `.md` file in the appropriate `docs/` folder
+2. Add frontmatter at the top:
+
+```markdown
+---
+sidebar_position: 1
+---
+
+# Page Title
+
+Content here...
+```
+
+3. Save - the site auto-reloads
+
+### Creating a New Section
+
+1. Create a folder in `docs/` (e.g., `docs/advanced/`)
+2. Add `_category_.json`:
+
+```json
+{
+  "label": "Advanced",
+  "position": 7,
+  "collapsed": true
+}
+```
+
+3. Add `.md` files with `sidebar_position` frontmatter
+
+### Sidebar Ordering
+
+- **Folders**: Use `position` in `_category_.json`
+- **Files**: Use `sidebar_position` in frontmatter
+- Lower numbers = higher in sidebar
+
+## File Structure
+
+```
+docs/
+├── intro.md              # Welcome page (position: 1)
+├── getting-started/      # Installation, quickstart (position: 2)
+├── concepts/             # Core concepts (position: 3)
+├── constraints/          # Constraints reference (position: 4)
+├── api/                  # API reference (position: 5)
+├── examples/             # Example code (position: 6)
+└── changelog.md          # Version history (position: 100)
+```
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `npm start` | Start dev server (http://localhost:3000) |
+| `npm run build` | Build for production |
+| `npm run serve` | Serve built site locally |
+| `npm run clear` | Clear cache |
+
+## Versioning Documentation
+
+To create a versioned snapshot (e.g., for v1.0.0):
 
 ```bash
-yarn build
+npm run docusaurus docs:version 1.0.0
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+This creates:
+- `versioned_docs/version-1.0.0/` - Frozen copy of docs
+- `versioned_sidebars/version-1.0.0-sidebars.json` - Frozen sidebar
 
 ## Deployment
 
-Using SSH:
+### GitHub Pages
 
 ```bash
-USE_SSH=true yarn deploy
+GIT_USER=<username> npm run deploy
 ```
 
-Not using SSH:
+### Other Hosting
 
 ```bash
-GIT_USER=<Your GitHub username> yarn deploy
+npm run build
+# Upload contents of `build/` to your host
 ```
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+## Customization
+
+| File | Purpose |
+|------|---------|
+| `docusaurus.config.ts` | Site config, navbar, footer |
+| `sidebars.ts` | Sidebar configuration |
+| `src/css/custom.css` | Theme colors |
+| `src/pages/index.tsx` | Homepage |
+| `static/img/` | Logo, favicon, images |
+
+## Reference
+
+Default Docusaurus tutorials are preserved in `_reference/` (gitignored) for learning purposes.
+
+## Links
+
+- [Pedantigo Library](https://github.com/smrutai/pedantigo)
+- [Docusaurus Documentation](https://docusaurus.io/docs)
+- [Go Reference](https://pkg.go.dev/github.com/smrutai/pedantigo)
