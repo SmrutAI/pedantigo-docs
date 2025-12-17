@@ -34,8 +34,9 @@ const config: Config = {
       'classic',
       {
         docs: {
+          path: 'pedantigo/docs',
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/SmrutAI/pedantigo-docs/edit/main/',
+          editUrl: 'https://github.com/SmrutAI/pedantigo/edit/main/docs/',
         },
         blog: {
           showReadingTime: true,
@@ -103,7 +104,7 @@ const config: Config = {
           items: [
             {
               label: 'Getting Started',
-              to: '/docs/intro',
+              to: '/docs/',
             },
             {
               label: 'Go Reference',
@@ -138,7 +139,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} SmrutAI. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} SmrutAI. Built with ❤️ by <a href="https://smrut.ai" target="_blank" rel="noopener noreferrer">smrut.ai</a>`,
     },
 
     // Syntax highlighting

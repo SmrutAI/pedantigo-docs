@@ -1,0 +1,3 @@
+[submodule "pedantigo"]
+	path = pedantigo
+	url = git@github.com:SmrutAI/pedantigo.git

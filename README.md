@@ -1,127 +1,125 @@
-# Pedantigo Documentation
+# Pedantigo Documentation Site
 
-Documentation website for [Pedantigo](https://github.com/smrutai/pedantigo) - Pydantic-inspired validation for Go.
+Documentation website for [Pedantigo](https://github.com/SmrutAI/pedantigo).
 
-Built with [Docusaurus](https://docusaurus.io/).
+Built with [Docusaurus](https://docusaurus.io/) | Live at [pedantigo.dev](https://pedantigo.dev)
+
+## Architecture
+
+```
+pedantigo-docs/
+├── pedantigo/          # Git submodule → SmrutAI/pedantigo
+│   └── docs/           # Documentation markdown files
+├── src/                # React components, custom pages
+├── static/             # Static assets (logo, favicon)
+└── docusaurus.config.ts
+```
+
+**Documentation lives in the main pedantigo repo** (`pedantigo/docs/`), making it easy to update docs alongside code changes.
 
 ## Quick Start
 
 ```bash
+# Clone with submodule
+git clone --recurse-submodules git@github.com:SmrutAI/pedantigo-docs.git
+cd pedantigo-docs
+
+# Or if already cloned
+git submodule update --init --recursive
+
+# Install and run
 npm install
 npm start
 ```
 
 Open http://localhost:3000
 
-## Daily Maintenance
+## Updating Documentation
 
-### Adding a New Doc Page
+### For doc content changes (in pedantigo repo):
+1. Edit files in `pedantigo/docs/`
+2. Commit and push to pedantigo repo
+3. In pedantigo-docs: `git submodule update --remote`
+4. Commit submodule update
 
-1. Create a new `.md` file in the appropriate `docs/` folder
-2. Add frontmatter at the top:
+### For site changes (styling, components):
+1. Edit files in `src/` or config files
+2. Commit and push to pedantigo-docs repo
 
-```markdown
----
-sidebar_position: 1
----
+## Versioning (Semantic Versioning)
 
-# Page Title
+When releasing a new version of Pedantigo:
 
-Content here...
-```
-
-3. Save - the site auto-reloads
-
-### Creating a New Section
-
-1. Create a folder in `docs/` (e.g., `docs/advanced/`)
-2. Add `_category_.json`:
-
-```json
-{
-  "label": "Advanced",
-  "position": 7,
-  "collapsed": true
-}
-```
-
-3. Add `.md` files with `sidebar_position` frontmatter
-
-### Sidebar Ordering
-
-- **Folders**: Use `position` in `_category_.json`
-- **Files**: Use `sidebar_position` in frontmatter
-- Lower numbers = higher in sidebar
-
-## File Structure
-
-```
-docs/
-├── intro.md              # Welcome page (position: 1)
-├── getting-started/      # Installation, quickstart (position: 2)
-├── concepts/             # Core concepts (position: 3)
-├── constraints/          # Constraints reference (position: 4)
-├── api/                  # API reference (position: 5)
-├── examples/             # Example code (position: 6)
-└── changelog.md          # Version history (position: 100)
-```
-
-## Commands
-
-| Command | Description |
-|---------|-------------|
-| `npm start` | Start dev server (http://localhost:3000) |
-| `npm run build` | Build for production |
-| `npm run serve` | Serve built site locally |
-| `npm run clear` | Clear cache |
-
-## Versioning Documentation
-
-To create a versioned snapshot (e.g., for v1.0.0):
-
+### 1. Create a version snapshot
 ```bash
-npm run docusaurus docs:version 1.0.0
+npm run docusaurus docs:version X.Y.Z
 ```
 
 This creates:
-- `versioned_docs/version-1.0.0/` - Frozen copy of docs
-- `versioned_sidebars/version-1.0.0-sidebars.json` - Frozen sidebar
+- `versioned_docs/version-X.Y.Z/` - Frozen copy of docs
+- `versioned_sidebars/version-X.Y.Z-sidebars.json` - Frozen sidebar
+
+### 2. Version naming convention
+- **Major (X.0.0)**: Breaking changes
+- **Minor (X.Y.0)**: New features, backward compatible
+- **Patch (X.Y.Z)**: Bug fixes only
+
+### 3. Complete release workflow
+```bash
+# 1. Ensure submodule is at release commit
+cd pedantigo
+git checkout vX.Y.Z  # or the release commit
+cd ..
+
+# 2. Create versioned docs
+npm run docusaurus docs:version X.Y.Z
+
+# 3. Commit version snapshot
+git add .
+git commit -m "docs: add version X.Y.Z documentation"
+git push
+```
+
+### 4. Managing versions
+Edit `versions.json` to control which versions appear in dropdown.
+
+## Refreshing Docs from pedantigo
+
+```bash
+# Pull latest docs from pedantigo main branch
+git submodule update --remote pedantigo
+
+# Verify changes
+npm start
+
+# Commit if satisfied
+git add pedantigo
+git commit -m "docs: update to latest pedantigo docs"
+git push
+```
 
 ## Deployment
 
-### Automatic (GitHub Pages)
-
-Deployment happens automatically when you push to `main`:
-
-1. GitHub Actions builds the site
+Automatic via GitHub Actions on push to `main`:
+1. Builds Docusaurus site
 2. Deploys to GitHub Pages
 3. Live at https://pedantigo.dev
 
-To trigger manually: Go to Actions → "Deploy to GitHub Pages" → Run workflow
+Manual trigger: Actions → "Deploy to GitHub Pages" → Run workflow
 
-### Manual / Other Hosting
-
-```bash
-npm run build
-# Upload contents of `build/` to your host
-```
-
-## Customization
+## File Reference
 
 | File | Purpose |
 |------|---------|
 | `docusaurus.config.ts` | Site config, navbar, footer |
-| `sidebars.ts` | Sidebar configuration |
+| `sidebars.ts` | Sidebar structure |
 | `src/css/custom.css` | Theme colors |
-| `src/pages/index.tsx` | Homepage |
-| `static/img/` | Logo, favicon, images |
-
-## Reference
-
-Default Docusaurus tutorials are preserved in `_reference/` (gitignored) for learning purposes.
+| `src/pages/index.tsx` | Landing page |
+| `static/CNAME` | Custom domain |
+| `pedantigo/docs/` | Documentation content (submodule) |
 
 ## Links
 
-- [Pedantigo Library](https://github.com/smrutai/pedantigo)
+- [Pedantigo Library](https://github.com/SmrutAI/pedantigo)
+- [Go Reference](https://pkg.go.dev/github.com/SmrutAI/pedantigo)
 - [Docusaurus Documentation](https://docusaurus.io/docs)
-- [Go Reference](https://pkg.go.dev/github.com/smrutai/pedantigo)
