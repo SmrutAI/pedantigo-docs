@@ -89,13 +89,17 @@ This creates:
 
 ## Deployment
 
-### GitHub Pages
+### Automatic (GitHub Pages)
 
-```bash
-GIT_USER=<username> npm run deploy
-```
+Deployment happens automatically when you push to `main`:
 
-### Other Hosting
+1. GitHub Actions builds the site
+2. Deploys to GitHub Pages
+3. Live at https://pedantigo.dev
+
+To trigger manually: Go to Actions → "Deploy to GitHub Pages" → Run workflow
+
+### Manual / Other Hosting
 
 ```bash
 npm run build

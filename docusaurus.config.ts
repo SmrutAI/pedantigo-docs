@@ -19,7 +19,7 @@ const config: Config = {
   baseUrl: '/',
 
   // GitHub pages deployment config
-  organizationName: 'smrutai',
+  organizationName: 'SmrutAI',
   projectName: 'pedantigo',
 
   onBrokenLinks: 'throw',
@@ -35,7 +35,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/smrutai/pedantigo-docs/edit/main/',
+          editUrl: 'https://github.com/SmrutAI/pedantigo-docs/edit/main/',
         },
         blog: {
           showReadingTime: true,
@@ -43,7 +43,7 @@ const config: Config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          editUrl: 'https://github.com/smrutai/pedantigo-docs/edit/main/',
+          editUrl: 'https://github.com/SmrutAI/pedantigo-docs/edit/main/',
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -81,13 +81,13 @@ const config: Config = {
           label: 'Documentation',
         },
         {
-          href: 'https://pkg.go.dev/github.com/smrutai/pedantigo',
+          href: 'https://pkg.go.dev/github.com/SmrutAI/pedantigo',
           label: 'Go Reference',
           position: 'left',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/smrutai/pedantigo',
+          href: 'https://github.com/SmrutAI/pedantigo',
           label: 'GitHub',
           position: 'right',
         },
@@ -107,7 +107,7 @@ const config: Config = {
             },
             {
               label: 'Go Reference',
-              href: 'https://pkg.go.dev/github.com/smrutai/pedantigo',
+              href: 'https://pkg.go.dev/github.com/SmrutAI/pedantigo',
             },
           ],
         },
@@ -116,11 +116,11 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/smrutai/pedantigo',
+              href: 'https://github.com/SmrutAI/pedantigo',
             },
             {
               label: 'Issues',
-              href: 'https://github.com/smrutai/pedantigo/issues',
+              href: 'https://github.com/SmrutAI/pedantigo/issues',
             },
           ],
         },
@@ -133,7 +133,7 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/smrutai/pedantigo',
+              href: 'https://github.com/SmrutAI/pedantigo',
             },
           ],
         },
