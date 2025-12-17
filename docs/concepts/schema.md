@@ -16,7 +16,7 @@ fmt.Println(string(jsonBytes))
 
 ## Caching
 
-Schemas are cached automatically - first call takes ~10ms, subsequent calls <100ns (240x faster).
+Schemas are cached automatically - first call takes ~10ms, subsequent calls `<100ns` (240x faster).
 
 TODO: Add detailed schema generation documentation.
 
