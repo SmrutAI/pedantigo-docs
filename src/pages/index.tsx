@@ -20,8 +20,14 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
+            to="/docs">
+            Get Started
+          </Link>
+          <Link
+            className="button button--secondary button--lg"
+            href="https://github.com/smrutai/pedantigo"
+            style={{marginLeft: '1rem'}}>
+            GitHub
           </Link>
         </div>
       </div>
@@ -33,8 +39,8 @@ export default function Home(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title="Pydantic-inspired validation for Go"
+      description="Struct tag-based validation, JSON schema generation, and streaming validation for Go">
       <HomepageHeader />
       <main>
         <HomepageFeatures />
