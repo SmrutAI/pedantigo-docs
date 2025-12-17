@@ -115,8 +115,8 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'GitHub Discussions',
-              href: 'https://github.com/smrutai/pedantigo/discussions',
+              label: 'GitHub',
+              href: 'https://github.com/smrutai/pedantigo',
             },
             {
               label: 'Issues',
