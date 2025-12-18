@@ -69,10 +69,9 @@ const config: Config = {
 
     // Navbar configuration
     navbar: {
-      title: 'Pedantigo',
       logo: {
-        alt: 'Pedantigo Logo',
-        src: 'img/favicon.png',
+        alt: 'Pedantigo',
+        src: 'img/logo.png',
       },
       items: [
         {
