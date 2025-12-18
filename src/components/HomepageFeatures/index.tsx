@@ -5,12 +5,14 @@ import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
+  image: string;
   description: ReactNode;
 };
 
 const FeatureList: FeatureItem[] = [
   {
     title: 'Struct Tag Validation',
+    image: '/img/struct-tag-validation.png',
     description: (
       <>
         Define validation rules using familiar Go struct tags.
@@ -22,6 +24,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'JSON Schema Generation',
+    image: '/img/schema-generation.png',
     description: (
       <>
         Auto-generate JSON schemas from your Go structs with built-in caching.
@@ -31,6 +34,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Streaming Validation',
+    image: '/img/streaming-validation.png',
     description: (
       <>
         Validate partial JSON as it streams - perfect for LLM outputs.
@@ -40,9 +44,12 @@ const FeatureList: FeatureItem[] = [
   },
 ];
 
-function Feature({title, description}: FeatureItem) {
+function Feature({title, image, description}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
+      <div className="text--center">
+        <img src={image} alt={title} className={styles.featureImg} />
+      </div>
       <div className="text--center padding-horiz--md">
         <Heading as="h3">{title}</Heading>
         <p>{description}</p>

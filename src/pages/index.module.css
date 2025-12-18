@@ -21,3 +21,39 @@
   align-items: center;
   justify-content: center;
 }
+
+.heroLogo {
+  max-height: 320px;
+  width: auto;
+  margin-bottom: 2rem;
+
+  /* Royal medieval frame - using design system variables */
+  border: 6px solid var(--border);
+  background: var(--card);
+  padding: 16px;
+
+  /* Decorative double border effect */
+  outline: 3px solid var(--muted-foreground);
+  outline-offset: -12px;
+
+  /* Neo-brutalism shadow - uses design system shadow */
+  box-shadow: var(--shadow-lg);
+
+  /* Subtle rotation */
+  transform: rotate(-0.5deg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.heroLogo:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: var(--shadow-xl);
+}
+
+@media screen and (max-width: 996px) {
+  .heroLogo {
+    max-height: 220px;
+    padding: 12px;
+    border-width: 4px;
+    box-shadow: var(--shadow-md);
+  }
+}

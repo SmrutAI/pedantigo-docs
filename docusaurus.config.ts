@@ -58,7 +58,7 @@ const config: Config = {
 
   themeConfig: {
     // Social card image
-    image: 'img/pedantigo-social-card.jpg',
+    image: 'img/social-card.png',
 
     // Color mode settings
     colorMode: {
@@ -72,7 +72,7 @@ const config: Config = {
       title: 'Pedantigo',
       logo: {
         alt: 'Pedantigo Logo',
-        src: 'img/logo.svg',
+        src: 'img/favicon.png',
       },
       items: [
         {

@@ -1,48 +1,353 @@
 /**
  * Pedantigo Documentation Theme
  *
- * Uses Infima CSS framework (Docusaurus default).
- * Color palette: Green/Teal - matches Go branding.
+ * Imports design-system.css (Tailwind v4 / shadcn theme)
+ * and maps those variables to Docusaurus Infima framework.
+ *
+ * PLUG-AND-PLAY: Replace design-system.css content from tweakcn.com
+ * and this file will automatically use the new theme colors.
  */
 
-/* Light mode colors */
+@import './design-system.css';
+
+/* ========================================
+   DESIGN SYSTEM → INFIMA MAPPING
+   ======================================== */
+
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  /* PRIMARY */
+  --ifm-color-primary: var(--primary);
+  --ifm-color-primary-dark: var(--primary);
+  --ifm-color-primary-darker: var(--primary);
+  --ifm-color-primary-darkest: var(--primary);
+  --ifm-color-primary-light: var(--primary);
+  --ifm-color-primary-lighter: var(--primary);
+  --ifm-color-primary-lightest: var(--primary);
+  --ifm-color-primary-contrast-background: var(--primary-foreground);
+  --ifm-color-primary-contrast-foreground: var(--primary);
+
+  /* SECONDARY */
+  --ifm-color-secondary: var(--secondary);
+  --ifm-color-secondary-contrast-background: var(--secondary-foreground);
+
+  /* BACKGROUNDS */
+  --ifm-background-color: var(--background);
+  --ifm-background-surface-color: var(--card);
+  --ifm-hover-overlay: var(--muted);
+  --ifm-card-background-color: var(--card);
+
+  /* TEXT */
+  --ifm-font-color-base: var(--foreground);
+  --ifm-font-color-secondary: var(--muted-foreground);
+  --ifm-heading-color: var(--foreground);
+
+  /* BORDERS */
+  --ifm-global-border-color: var(--border);
+  --ifm-hr-border-color: var(--border);
+  --ifm-toc-border-color: var(--border);
+  --ifm-table-border-color: var(--border);
+
+  /* TYPOGRAPHY */
+  --ifm-font-family-base: var(--font-sans);
+  --ifm-font-family-monospace: var(--font-mono);
+  --ifm-heading-font-family: var(--font-serif);
+  --ifm-font-size-base: 100%;
+  --ifm-line-height-base: 1.65;
+  --ifm-heading-line-height: 1.25;
+  --ifm-letter-spacing: var(--tracking-normal);
+
+  /* BORDER RADIUS */
+  --ifm-global-radius: var(--radius);
+  --ifm-button-border-radius: var(--radius);
+  --ifm-card-border-radius: var(--radius-lg);
+  --ifm-code-border-radius: var(--radius-sm);
+  --ifm-alert-border-radius: var(--radius-md);
+  --ifm-pagination-border-radius: var(--radius);
+  --ifm-pill-border-radius: var(--radius-xl);
+
+  /* SHADOWS */
+  --ifm-global-shadow-lw: var(--shadow-sm);
+  --ifm-global-shadow-md: var(--shadow-md);
+  --ifm-global-shadow-tl: var(--shadow-lg);
+
+  /* SPACING */
+  --ifm-spacing-horizontal: calc(var(--spacing) * 4);
+  --ifm-spacing-vertical: calc(var(--spacing) * 4);
+
+  /* CODE */
+  --ifm-code-font-size: 90%;
+  --ifm-code-background: var(--muted);
+  --ifm-code-padding-horizontal: calc(var(--spacing) * 2);
+  --ifm-code-padding-vertical: var(--spacing);
+  --docusaurus-highlighted-code-line-bg: var(--accent);
+
+  /* LINKS */
+  --ifm-link-color: var(--primary);
+  --ifm-link-hover-color: var(--accent-foreground);
+
+  /* ALERTS/ADMONITIONS */
+  --ifm-color-info: var(--chart-3);
+  --ifm-color-success: var(--chart-4);
+  --ifm-color-warning: var(--chart-5);
+  --ifm-color-danger: var(--destructive);
+
+  /* MENU/SIDEBAR */
+  --ifm-menu-color: var(--sidebar-foreground);
+  --ifm-menu-color-background-active: var(--sidebar-accent);
+  --ifm-menu-color-background-hover: var(--sidebar-accent);
+  --ifm-menu-color-active: var(--sidebar-primary);
+  --ifm-menu-link-padding-horizontal: calc(var(--spacing) * 3);
+  --ifm-menu-link-padding-vertical: calc(var(--spacing) * 2);
+
+  /* TABLE OF CONTENTS */
+  --ifm-toc-link-color: var(--muted-foreground);
+
+  /* FOOTER */
+  --ifm-footer-background-color: var(--sidebar);
+  --ifm-footer-color: var(--sidebar-foreground);
+  --ifm-footer-link-color: var(--sidebar-foreground);
+  --ifm-footer-link-hover-color: var(--sidebar-primary);
+
+  /* NAVBAR */
+  --ifm-navbar-background-color: var(--background);
+  --ifm-navbar-link-color: var(--foreground);
+  --ifm-navbar-link-hover-color: var(--primary);
+  --ifm-navbar-shadow: var(--shadow-sm);
+
+  /* INPUTS (Search, etc) */
+  --ifm-input-background: var(--input);
+  --ifm-input-border-color: var(--border);
+  --ifm-input-focus-border-color: var(--ring);
 }
 
-/* Dark mode colors */
-[data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
-}
+/* Dark mode inherits from .dark class via Root.tsx sync */
 
-/* Code block styling */
-.prism-code {
-  font-size: 14px;
-}
+/* ========================================
+   COMPONENT STYLES
+   ======================================== */
 
-/* Inline code styling */
-code {
-  border-radius: 4px;
-  padding: 2px 6px;
-}
-
-/* Hero section improvements */
+/* Hero */
 .hero--primary {
-  --ifm-hero-background-color: var(--ifm-color-primary);
-  --ifm-hero-text-color: #fff;
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.hero__title {
+  font-family: var(--font-serif);
+  letter-spacing: var(--tracking-normal);
+}
+
+.hero__subtitle {
+  color: var(--primary-foreground);
+  opacity: 0.9;
+}
+
+/* Buttons */
+.button {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 2px solid var(--border);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.button:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.button--primary {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border-color: var(--primary);
+}
+
+.button--secondary {
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+}
+
+.button--outline {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--foreground);
+}
+
+/* Cards */
+.card {
+  background: var(--card);
+  color: var(--card-foreground);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+/* Navbar */
+.navbar {
+  background: var(--background);
+  border-bottom: 2px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.navbar__title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+}
+
+/* Sidebar */
+.menu {
+  background: var(--sidebar);
+  font-family: var(--font-sans);
+}
+
+.menu__link {
+  border-radius: var(--radius);
+}
+
+.menu__link--active {
+  background: var(--sidebar-accent);
+  color: var(--sidebar-accent-foreground);
+  font-weight: 600;
+}
+
+/* Footer */
+.footer {
+  background: var(--sidebar);
+  border-top: 2px solid var(--sidebar-border);
+}
+
+.footer__title {
+  font-family: var(--font-serif);
+}
+
+/* Code Blocks */
+.prism-code {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+code {
+  font-family: var(--font-mono);
+  background: var(--muted);
+  color: var(--accent-foreground);
+  padding: var(--spacing) calc(var(--spacing) * 2);
+  border-radius: var(--radius-sm);
+}
+
+/* Tables */
+table {
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+th {
+  background: var(--muted);
+  font-family: var(--font-sans);
+  font-weight: 600;
+}
+
+td, th {
+  border-color: var(--border);
+  padding: calc(var(--spacing) * 3);
+}
+
+/* Admonitions/Alerts */
+.alert {
+  border-radius: var(--radius-md);
+  border-width: 2px;
+  box-shadow: var(--shadow-sm);
+}
+
+.alert--info {
+  --ifm-alert-background-color: color-mix(in oklch, var(--chart-3) 10%, var(--background));
+  --ifm-alert-border-color: var(--chart-3);
+}
+
+.alert--warning {
+  --ifm-alert-background-color: color-mix(in oklch, var(--chart-5) 10%, var(--background));
+  --ifm-alert-border-color: var(--chart-5);
+}
+
+.alert--danger {
+  --ifm-alert-background-color: color-mix(in oklch, var(--destructive) 10%, var(--background));
+  --ifm-alert-border-color: var(--destructive);
+}
+
+/* Pagination */
+.pagination-nav__link {
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-xs);
+}
+
+.pagination-nav__link:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary);
+}
+
+/* TOC */
+.table-of-contents__link {
+  color: var(--muted-foreground);
+}
+
+.table-of-contents__link--active {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Breadcrumbs */
+.breadcrumbs__link {
+  color: var(--muted-foreground);
+}
+
+.breadcrumbs__item--active .breadcrumbs__link {
+  color: var(--foreground);
+}
+
+/* Search */
+.DocSearch-Button {
+  background: var(--input);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.DocSearch-Button:hover {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 20%, transparent);
+}
+
+/* Focus Ring */
+*:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: var(--radius);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+/* Selection */
+::selection {
+  background: var(--accent);
+  color: var(--accent-foreground);
 }
