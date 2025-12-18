@@ -81,6 +81,10 @@ const config: Config = {
           label: 'Documentation',
         },
         {
+          type: 'docsVersionDropdown',
+          position: 'left',
+        },
+        {
           href: 'https://pkg.go.dev/github.com/SmrutAI/pedantigo',
           label: 'Go Reference',
           position: 'left',
