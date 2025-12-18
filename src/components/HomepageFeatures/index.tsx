@@ -16,7 +16,7 @@ const FeatureList: FeatureItem[] = [
         Define validation rules using familiar Go struct tags.
         Just like <code>encoding/json</code>, but for validation.
         <br /><br />
-        <code>validate:"required,email,min=18"</code>
+        <code>pedantigo:"required,email,min=18"</code>
       </>
     ),
   },
