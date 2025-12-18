@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useLocation } from '@docusaurus/router';
 
 /**
  * Root component that syncs Docusaurus theme with design system.
@@ -9,10 +10,12 @@ import { useEffect } from 'react';
  * Solution: This component observes the data-theme attribute changes
  * and adds/removes `.dark` class on <html> accordingly.
  *
- * Note: We use MutationObserver instead of useColorMode because Root
- * is rendered before ColorModeProvider is available.
+ * Uses both MutationObserver (for theme toggle) and useLocation
+ * (for route changes) to ensure sync works during SPA navigation.
  */
 export default function Root({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+
   useEffect(() => {
     const syncDarkClass = () => {
       const theme = document.documentElement.getAttribute('data-theme');
@@ -23,10 +26,13 @@ export default function Root({ children }: { children: React.ReactNode }) {
       }
     };
 
-    // Initial sync
+    // Sync on mount and route changes
     syncDarkClass();
 
-    // Observe attribute changes on <html>
+    // Also sync after a small delay to handle race conditions
+    const timeoutId = setTimeout(syncDarkClass, 50);
+
+    // Observe attribute changes on <html> for theme toggle
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.attributeName === 'data-theme') {
@@ -40,8 +46,11 @@ export default function Root({ children }: { children: React.ReactNode }) {
       attributeFilter: ['data-theme'],
     });
 
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      observer.disconnect();
+      clearTimeout(timeoutId);
+    };
+  }, [location.pathname]); // Re-run on route changes
 
   return <>{children}</>;
 }
