@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "setup": "./setup.sh",
+    "dev": "[ -d pedantigo ] || npm run setup && docusaurus start",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "docusaurus build",
