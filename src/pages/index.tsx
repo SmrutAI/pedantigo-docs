@@ -12,24 +12,28 @@ function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <img src="/img/logo_large.png" alt="Pedantigo Mascot" className={styles.heroLogo} />
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs">
-            Get Started
-          </Link>
-          <Link
-            className="button button--secondary button--lg"
-            href="https://github.com/smrutai/pedantigo"
-            style={{marginLeft: '1rem'}}>
-            GitHub
-          </Link>
+      <div className={clsx('container', styles.heroContainer)}>
+        <div className={styles.heroContent}>
+          <Heading as="h1" className="hero__title">
+            {siteConfig.title}
+          </Heading>
+          <p className="hero__subtitle">{siteConfig.tagline}</p>
+          <div className={styles.buttons}>
+            <Link
+              className="button button--primary button--lg"
+              to="/docs">
+              Get Started
+            </Link>
+            <Link
+              className="button button--outline button--lg"
+              href="https://github.com/smrutai/pedantigo"
+              style={{marginLeft: '1rem'}}>
+              GitHub
+            </Link>
+          </div>
+        </div>
+        <div className={styles.heroImage}>
+          <img src="/img/logo_large.png" alt="Pedantigo Mascot" className={styles.heroLogo} />
         </div>
       </div>
     </header>
