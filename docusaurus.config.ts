@@ -97,7 +97,6 @@ const config: Config = {
 
     // Footer configuration
     footer: {
-      style: 'dark',
       links: [
         {
           title: 'Documentation',

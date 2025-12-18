@@ -290,6 +290,14 @@ td, th {
   border-color: var(--primary);
 }
 
+.pagination-nav__sublabel {
+  color: var(--muted-foreground);
+}
+
+.pagination-nav__label {
+  color: var(--primary);
+}
+
 /* TOC */
 .table-of-contents__link {
   color: var(--muted-foreground);
