@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
   repository_dispatch:
-    types: [pedantigo-updated]
+    types: [pedantigo-updated, benchmarks-updated]
   workflow_dispatch:
 
 permissions:
@@ -25,6 +25,12 @@ jobs:
 
       - name: Clone pedantigo
         run: git clone --depth 1 https://github.com/SmrutAI/pedantigo.git pedantigo
+
+      - name: Clone pedantigo-benchmarks
+        run: git clone --depth 1 https://github.com/SmrutAI/pedantigo-benchmarks.git pedantigo-benchmarks
+
+      - name: Copy benchmark report
+        run: cp pedantigo-benchmarks/BENCHMARK.md docs/benchmarks.md || echo "No BENCHMARK.md yet"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4

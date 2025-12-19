@@ -199,6 +199,34 @@
     align-items: center;
 }
 
+/* Navbar item spacing */
+.navbar__items {
+    gap: 1.5rem;
+}
+
+.navbar__items--right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding-right: 2rem;
+}
+
+/* Color mode toggle comes first (order: 0) */
+.navbar__items--right [class*="toggle"],
+.navbar__items--right [class*="colorMode"] {
+    order: 0;
+}
+
+/* Links come after (order: 1) */
+.navbar__items--right .navbar__item {
+    order: 1;
+}
+
+/* More padding on navbar links */
+.navbar__link {
+    padding: 0.5rem 0.75rem;
+}
+
 .navbar__title {
     font-family: var(--font-serif);
     font-weight: 800;
@@ -208,6 +236,7 @@
 .navbar__logo {
     display: flex;
     align-items: center;
+    padding-left: 2rem;
 }
 
 .navbar__logo img {

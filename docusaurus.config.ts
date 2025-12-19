@@ -80,6 +80,7 @@ const config: Config = {
           position: 'left',
           label: 'Documentation',
         },
+        {to: '/blog', label: 'Blog', position: 'left'},
         {
           type: 'docsVersionDropdown',
           position: 'left',
@@ -87,9 +88,8 @@ const config: Config = {
         {
           href: 'https://pkg.go.dev/github.com/SmrutAI/pedantigo',
           label: 'Go Reference',
-          position: 'left',
+          position: 'right',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/SmrutAI/pedantigo',
           label: 'GitHub',
