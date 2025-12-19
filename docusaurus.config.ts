@@ -82,6 +82,11 @@ const config: Config = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
+          to: '/docs/benchmarks',
+          label: 'Benchmarks',
+          position: 'left',
+        },
+        {
           type: 'docsVersionDropdown',
           position: 'left',
         },
