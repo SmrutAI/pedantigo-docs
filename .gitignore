@@ -20,6 +20,11 @@ yarn-debug.log*
 yarn-error.log*
 _reference/
 
+
+# IDEs
+.idea/
+
+
 # Pedantigo clone (for local development)
 pedantigo/
 pedantigo-benchmarks/
