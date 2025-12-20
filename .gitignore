@@ -23,3 +23,6 @@ _reference/
 # Pedantigo clone (for local development)
 pedantigo/
 pedantigo-benchmarks/
+
+# Claude Code instructions
+CLAUDE.md

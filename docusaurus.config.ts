@@ -56,6 +56,73 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    [
+      '@signalwire/docusaurus-plugin-llms-txt',
+      {
+        // Site metadata for llms.txt header
+        siteTitle: 'Pedantigo',
+        siteDescription:
+          'Pydantic-inspired validation library for Go with JSON Schema generation, streaming support, and zero dependencies beyond stdlib.',
+
+        // Categorization depth: 2 = /docs/concepts/* → "concepts" category
+        depth: 2,
+
+        // Include descriptions in llms.txt links
+        enableDescriptions: true,
+
+        // Content configuration
+        content: {
+          enableMarkdownFiles: true,
+          enableLlmsFullTxt: true,
+          relativePaths: true,
+          includeDocs: true,
+          includeVersionedDocs: false,
+          includeBlog: true,
+          includePages: false,
+          includeGeneratedIndex: true,
+          rehypeProcessTables: true,
+          remarkGfm: true,
+        },
+
+        // Category ordering - getting started first
+        includeOrder: [
+          '/docs/intro',
+          '/docs/getting-started/**',
+          '/docs/concepts/**',
+          '/docs/constraints/**',
+          '/docs/api/**',
+          '/docs/advanced/**',
+          '/docs/examples/**',
+          '/blog/**',
+        ],
+
+        // External links to include
+        optionalLinks: [
+          {
+            title: 'GitHub Repository',
+            url: 'https://github.com/SmrutAI/pedantigo',
+            description: 'Source code and issue tracker',
+          },
+          {
+            title: 'Go Package Reference',
+            url: 'https://pkg.go.dev/github.com/SmrutAI/pedantigo',
+            description: 'Official Go documentation',
+          },
+          {
+            title: 'Benchmarks',
+            url: 'https://pedantigo.dev/docs/benchmarks',
+            description: 'Performance comparison with alternatives',
+          },
+        ],
+
+        runOnPostBuild: true,
+        onRouteError: 'warn',
+        logLevel: 1,
+      },
+    ],
+  ],
+
   themeConfig: {
     // Social card image
     image: 'img/social-card.png',
