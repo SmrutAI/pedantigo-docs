@@ -1,4 +1,14 @@
 ---
+
+## [1.0.0] - 2025-12-21
+
+### Changed
+
+## What's Changed
+* feat: add go-playground/validator v10 compatible constraints and features by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/6
+* test(schema): add JSON Schema spec compliance validation by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/7
+
+---
 sidebar_position: 100
 ---
 
