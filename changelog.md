@@ -1,14 +1,4 @@
 ---
-
-## [1.0.0] - 2025-12-21
-
-### Changed
-
-## What's Changed
-* feat: add go-playground/validator v10 compatible constraints and features by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/6
-* test(schema): add JSON Schema spec compliance validation by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/7
-
----
 sidebar_position: 100
 ---
 
@@ -62,60 +52,26 @@ Initial release of Pedantigo - Pydantic-inspired validation for Go.
 - `Dict[T]()` - Convert struct to map
 
 #### Validator API (Advanced)
-- `New[T]()` - Create validator with custom options
-- `ValidatorOptions` - Configure strict mode, extra fields handling
-- `MarshalOptions` - Context-based field exclusion
+- `Validator[T]` struct for custom configurations
+- `ValidatorOptions` for strict mode, extra fields handling
+- `ExtraFieldsMode`: Ignore, Forbid, or Allow extra JSON fields
 
 #### JSON Schema Generation
-- Automatic schema generation from struct tags
-- Built-in caching (240x speedup after first call)
-- OpenAPI-compatible schema generation
-- Thread-safe concurrent access
+- Automatic generation from struct definitions
+- 240x speedup with caching (via `SchemaRegistry`)
+- OpenAPI 3.0 compatible output
 
 #### Streaming Validation
-- `NewStreamParser[T]()` - Parse partial JSON from streams
-- Real-time validation for LLM responses
-- Automatic JSON repair for incomplete data
+- `StreamParser` for partial JSON validation
+- Real-time validation of LLM streaming responses
+- Progress callbacks for incremental updates
 
 #### Discriminated Unions
-- `NewUnion[T]()` - Type-safe union handling
-- Multiple discriminator field support
-- Automatic variant detection
+- `Union[A, B, C]` type for type-safe unions
+- Automatic discriminator detection
+- JSON Schema `oneOf` support
 
-#### Cross-Field Validation
-- `eqfield`, `nefield` - Field equality comparisons
-- `ltfield`, `lefield`, `gtfield`, `gefield` - Field numeric comparisons
-- `required_if`, `required_unless` - Conditional requirements
-- `Validatable` interface for custom cross-field logic
-
-#### Advanced Features
-- `SecretStr` / `SecretBytes` - Safe handling of sensitive data
-- `RegisterValidation()` - Custom field validators
-- `RegisterStructValidation[T]()` - Custom struct validators
-- Context-based field exclusion for marshaling
-
-### Constraints
-
-#### String
-- `required`, `email`, `url`, `uuid`, `alpha`, `alphanumeric`, `numeric`
-- `minLength`, `maxLength`, `startswith`, `endswith`, `contains`
-- `pattern` (regex), `lowercase`, `uppercase`, `ascii`
-- `base64`, `hexadecimal`, `json`, `jwt`, `semver`
-
-#### Numeric
-- `min`, `max`, `gt`, `gte`, `lt`, `lte`
-- `positive`, `negative`, `nonnegative`, `nonpositive`
-- `multipleOf`, `divisibleBy`
-
-#### Format
-- `datetime`, `date`, `time`, `duration`
-- `ipv4`, `ipv6`, `cidr`, `mac`
-- `latitude`, `longitude`
-- `isbn`, `isbn10`, `isbn13`
-- `credit_card`, `ssn`
-- `country_code`, `currency_code`, `postal_code`
-
-#### Collection
-- `minItems`, `maxItems`, `unique`
-- `dive` - Validate slice/array elements
-- `keys`, `values` - Validate map keys/values
+#### Field Types
+- `Secret[T]` - Masks sensitive values in logs/JSON
+- Pointer support for optional fields
+- Custom type support via `Validatable` interface

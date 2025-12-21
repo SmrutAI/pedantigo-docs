@@ -81,9 +81,10 @@ while IFS='|' read -r tag published_at; do
         echo "---"
     } > "$TEMP_FILE"
 
-    # Find the first "---" which marks end of header section
+    # Find the third "---" which is the content separator after header
+    # (1st "---" opens frontmatter, 2nd "---" closes frontmatter, 3rd "---" separates header from releases)
     # Insert new release right after it
-    first_separator_line=$(grep -n "^---$" "$CHANGELOG_FILE" | head -1 | cut -d: -f1)
+    first_separator_line=$(grep -n "^---$" "$CHANGELOG_FILE" | sed -n '3p' | cut -d: -f1)
 
     if [ -z "$first_separator_line" ]; then
         echo "Error: Could not find header separator (---) in changelog"
