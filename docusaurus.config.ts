@@ -83,6 +83,12 @@ const config: Config = {
           includeGeneratedIndex: true,
           rehypeProcessTables: true,
           remarkGfm: true,
+          excludeRoutes: [
+            '/blog/tags/**',
+            '/blog/authors/**',
+            '/blog/archive',
+            '/docs/category/**',
+          ],
         },
 
         // Category ordering - getting started first

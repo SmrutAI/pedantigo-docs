@@ -1,14 +1,8 @@
-# Pedantigo Documentation
-# https://pedantigo.dev
-
 User-agent: *
 Allow: /
 
-# Sitemap for search engines
 Sitemap: https://pedantigo.dev/sitemap.xml
 
-# AI Training Crawlers - ALLOW (we want AI to learn about Pedantigo)
-# These bots train LLMs and answer questions about libraries
 User-agent: GPTBot
 Allow: /
 
@@ -32,6 +26,3 @@ Allow: /
 
 User-agent: cohere-ai
 Allow: /
-
-# LLMs.txt for AI assistants
-# See: https://llmstxt.org
