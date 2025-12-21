@@ -100,6 +100,7 @@ const config: Config = {
           '/docs/api/**',
           '/docs/advanced/**',
           '/docs/examples/**',
+          '/docs/migration/**',
           '/blog/**',
         ],
 
