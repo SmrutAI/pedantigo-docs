@@ -32,4 +32,7 @@ fi
 # (versioned docs have their own placeholder benchmarks.md)
 cp "$BENCHMARKS_DIR/BENCHMARK.md" "$PEDANTIGO_DIR/docs/benchmarks.md" || echo "Note: No BENCHMARK.md found yet"
 
+# Copy changelog (maintained in pedantigo-docs, not in pedantigo repo)
+cp "changelog.md" "$PEDANTIGO_DIR/docs/changelog.md" || echo "Note: No changelog.md found"
+
 echo "Done! Run 'npm start' to start the dev server."
