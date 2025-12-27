@@ -11,6 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.1.0] - 2025-12-27
+
+### Changed
+
+## What's Changed
+* feat(constraints): add validator-compatible constraints and APIs by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/8
+
+---
+
 ## [1.0.0] - 2025-12-21
 
 ### Changed
