@@ -11,6 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.1.1] - 2026-01-05
+
+### Changed
+
+## What's Changed
+* fix(required): allow zero values when JSON key is present in nested structs by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/9
+
+---
+
 ## [1.1.0] - 2025-12-27
 
 ### Changed
