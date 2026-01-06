@@ -59,23 +59,34 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Create versioned docs (on release)
+      - name: Create or update versioned docs (on release)
         if: github.event.client_payload.version != ''
         env:
           VERSION: ${{ github.event.client_payload.version }}
         run: |
           # Strip 'v' prefix if present (v0.2.0 -> 0.2.0)
           VERSION_NUM="${VERSION#v}"
-          npm run docusaurus docs:version "$VERSION_NUM"
+          # Check if version already exists
+          if grep -q "\"$VERSION_NUM\"" versions.json 2>/dev/null; then
+            echo "Version $VERSION_NUM exists, updating docs in place"
+            # Copy current docs to versioned folder (overwrite existing)
+            rm -rf "versioned_docs/version-$VERSION_NUM"
+            cp -r pedantigo/docs "versioned_docs/version-$VERSION_NUM"
+          else
+            echo "Creating new version $VERSION_NUM"
+            npm run docusaurus docs:version "$VERSION_NUM"
+          fi
 
       - name: Commit versioned docs
         if: github.event.client_payload.version != ''
+        env:
+          VERSION: ${{ github.event.client_payload.version }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add versioned_docs versioned_sidebars versions.json
-          git commit -m "docs: add version ${{ github.event.client_payload.version }}" || echo "No changes to commit"
-          git push
+          git diff --staged --quiet || git commit -m "docs: update version $VERSION"
+          git push || true
 
       - name: Build
         run: npm run build
