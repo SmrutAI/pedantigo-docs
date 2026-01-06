@@ -11,6 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.1.2] - 2026-01-06
+
+### Changed
+
+## What's Changed
+* fix(constraints): support decimal values in min/max constraints by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/10
+* test(dive): comprehensive dive tests for all constraints by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/11
+* feat(constraints): implement skip_unless with SkipConstraint interface by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/12
+
+---
+
 ## [1.1.1] - 2026-01-05
 
 ### Changed
