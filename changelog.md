@@ -11,6 +11,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.1.3] - 2026-02-04
+
+### Changed
+
+## What's Changed
+* test: comprehensive test coverage improvements with lint fixes by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/13
+* feat(schema): add SchemaLLM methods for LLM API compatibility by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/14
+* fix(deserialize): apply defaults to nested struct fields by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/18
+* fix(validator): prevent stack overflow on circular type refs and Validatable re-entrancy by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/19
+## What's Changed
+* test: comprehensive test coverage improvements with lint fixes by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/13
+* feat(schema): add SchemaLLM methods for LLM API compatibility by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/14
+* fix(deserialize): apply defaults to nested struct fields by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/18
+* fix(validator): prevent stack overflow on circular type refs and Validatable re-entrancy by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/19
+
+---
+
 ## [1.1.2] - 2026-01-06
 
 ### Changed
