@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.1.4] - 2026-06-21
+
+### Changed
+
+Release v1.1.4 with schema improvements, omitempty support, and JSON array examples syntax
+
+---
+
 ## [1.1.3] - 2026-02-04
 
 ### Changed
