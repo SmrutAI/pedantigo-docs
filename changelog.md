@@ -11,6 +11,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.0.0] - 2026-08-06
+
+### Changed
+
+## Breaking Changes
+* Default struct tag changed from `pedantigo` to `validate` — rename tags to `validate:` or call `SetTagName("pedantigo")` to keep v1 behavior.
+* Import path changed to `github.com/SmrutAI/pedantigo/v2` (Go semantic import versioning for v2+).
+* feat!: change default struct tag from pedantigo to validate, feat!: bump module to v2 for pedantigo/v2 import path, ci: pin golangci-lint to go1.25.12 via GOTOOLCHAIN, bump to v2.12.2 by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/22
+* Update README with v2 breaking change details by @tushar2708 in 4922f87
+* docs: fix import path casing and missing v2 suffix in code examples by @tushar2708 in 8d4b259
+* test: cover pedantigo as an explicit custom tag name by @tushar2708 in 46f1a03
+
+---
+
 ## [1.1.4] - 2026-06-21
 
 ### Changed
