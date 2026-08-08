@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.0.1] - 2026-08-08
+
+### Changed
+
+* Retracted v2.0.0 in `go.mod` — it was published with a stale pre-restructure layout (bare `validator.go` at module root, before the move to the `validator/` subpackage) that got permanently cached on the public Go module proxy before the fix landed. v2.0.1 is the corrected release; use this version or later by @tushar2708
+
+---
+
 ## [2.0.0] - 2026-08-06
 
 ### Changed
