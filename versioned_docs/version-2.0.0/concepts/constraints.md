@@ -8,7 +8,7 @@ Constraints are validation rules applied to struct fields via struct tags. Pedan
 
 ## Constraint Syntax
 
-Constraints are specified using the `pedantigo` struct tag. Multiple constraints can be combined with commas, and some accept parameters:
+Constraints are specified using the `validate` struct tag. Multiple constraints can be combined with commas, and some accept parameters:
 
 ```go
 type User struct {
@@ -252,7 +252,7 @@ package main
 
 import (
     "log"
-    "github.com/SmrutAI/pedantigo/v2/pdcore"
+    "github.com/SmrutAI/pedantigo/v2/validator"
 )
 
 type UserProfile struct {
@@ -303,7 +303,7 @@ func main() {
         "status": "active"
     }`)
 
-    user, err := pdcore.Unmarshal[UserProfile](jsonData)
+    user, err := validator.Unmarshal[UserProfile](jsonData)
     if err != nil {
         log.Fatalf("Validation failed: %v", err)
     }
@@ -318,9 +318,9 @@ func main() {
 When validation fails, Pedantigo returns detailed errors for each field:
 
 ```go
-user, err := pdcore.Unmarshal[UserProfile](invalidData)
+user, err := validator.Unmarshal[UserProfile](invalidData)
 if err != nil {
-    if validationErr, ok := err.(*pdcore.ValidationError); ok {
+    if validationErr, ok := err.(*validator.ValidationError); ok {
         for _, fieldErr := range validationErr.Errors {
             fmt.Printf("Field: %s, Error: %s\n", fieldErr.Field, fieldErr.Message)
         }

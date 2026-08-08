@@ -18,6 +18,8 @@ This is v2 documentation. The default struct tag changed from `pedantigo` to `va
 
 Pedantigo brings Pydantic's elegant validation patterns to Go with a reflection-based design that feels natural in the Go ecosystem.
 
+[Check out how pedantigo is so fast, and how to make the best out of it](./advanced/performance)
+
 ## Why Pedantigo?
 
 Pedantigo was built while developing [smrut.ai](https://smrut.ai), where reliable JSON validation is critical for AI agent interactions.
@@ -36,7 +38,7 @@ package main
 
 import (
     "fmt"
-    "github.com/SmrutAI/pedantigo/v2/pdcore"
+    "github.com/SmrutAI/pedantigo/v2/validator"
 )
 
 type User struct {
@@ -49,7 +51,7 @@ func main() {
     jsonData := []byte(`{"email": "user@example.com", "age": 25, "role": "admin"}`)
 
     // Parse, validate, and unmarshal in one call
-    user, err := pdcore.Unmarshal[User](jsonData)
+    user, err := validator.Unmarshal[User](jsonData)
     if err != nil {
         fmt.Println("Validation failed:", err)
         return
@@ -70,16 +72,16 @@ Pedantigo offers two API styles to match your use case:
 
 ```go
 // Parse JSON + validate
-user, err := pdcore.Unmarshal[User](jsonData)
+user, err := validator.Unmarshal[User](jsonData)
 
 // Create from JSON/map/struct with validation
-user, err := pdcore.NewModel[User](input)
+user, err := validator.NewModel[User](input)
 
 // Validate existing struct
-err := pdcore.Validate[User](existingUser)
+err := validator.Validate(&existingUser)
 
 // Get cached JSON Schema
-schema := pdcore.Schema[User]()
+schema := validator.Schema[User]()
 ```
 
 The Simple API uses a global schema cache that's automatically managed. Perfect for typical validation workflows.
@@ -91,11 +93,11 @@ The Simple API uses a global schema cache that's automatically managed. Perfect 
 
 ```go
 // Create validator instance
-validator := pdcore.New[User]()
+userValidator := validator.New[User]()
 
 // Use validator methods
-user, err := validator.Unmarshal(jsonData)
-schema := validator.JSONSchema()
+user, err := userValidator.Unmarshal(jsonData)
+schema := userValidator.Schema()
 ```
 
 Use the Validator API when you need:
