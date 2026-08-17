@@ -11,6 +11,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.1.0] - 2026-08-17
+
+### Changed
+
+* Added a Gin plugin (`plugins/web/gin`) that installs pedantigo into Gin's `codec/json.API` and `binding.Validator` hooks, giving automatic request validation on `ShouldBindJSON`/`Query`/`Form`/`Header` — mirrors the existing Echo Binder plugin by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/27
+* Fixed a bug where `RegisterValidation`/`RegisterAlias`/`RegisterTagNameFunc` could silently evict `Register()`'d framework validators, by splitting the core cache into a permanent registry and a disposable Simple API cache by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/27
+* Added `ValidateInto`, a type-erased validation lookup for framework adapters that returns a clear error on non-pointer/nil input instead of silently reporting success by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/27
+* Made the `Register()` tag-name check race-free via atomic compare-and-swap, and pedantigo now enforces a single struct-tag name across all `Register()`'d validators in a process by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/27
+* Documented the Echo Binder plugin in the README by @tushar2708
+* Removed the dead Go Report Card badge, added a dedicated Lint workflow/badge, and documented that MAC-address parsing behavior depends on the consuming app's Go toolchain, not pedantigo's `go.mod` floor by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/26
+* First release where `plugins/web/echo` and `plugins/web/gin` are tagged as independently installable Go modules (`plugins/web/echo/v2.1.0`, `plugins/web/gin/v2.1.0`) — earlier releases only tagged the root module, so a pinned `go get` of either plugin wasn't possible before now
+
+---
+
 ## [2.0.1] - 2026-08-08
 
 ### Changed
