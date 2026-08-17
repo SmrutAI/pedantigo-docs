@@ -11,6 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.1.1] - 2026-08-17
+
+### Changed
+
+* Fixed Echo and Gin plugin module paths that embedded `/v2` in the middle instead of at the end, violating Go's major-version-suffix rule and permanently capping both plugins at implicit v0/v1 — moved to `plugins/web/pedantigoecho/v2` and `plugins/web/pedantigogin/v2`, with package names renamed to `pedantigoecho`/`pedantigogin` to avoid colliding with `labstack/echo`/`gin-gonic/gin` by @tushar2708
+* Retracted v2.1.0 in go.mod — its README/docs pointed at the `plugins/web/echo/v2.1.0` and `plugins/web/gin/v2.1.0` tags, both of which used the broken module paths above and have since been deleted, so following v2.1.0's own install instructions failed by @tushar2708
+## Breaking Changes
+* Import paths for the Echo and Gin plugins change to `github.com/SmrutAI/pedantigo/plugins/web/pedantigoecho/v2` and `github.com/SmrutAI/pedantigo/plugins/web/pedantigogin/v2`
+
+---
+
 ## [2.1.0] - 2026-08-17
 
 ### Changed
