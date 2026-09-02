@@ -11,6 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.1.2] - 2026-09-02
+
+### Changed
+
+* Fixed custom (de)serialization support by introducing a `WalkerDecoder` interface, letting a type control how it's populated from an already-decoded JSON value during `Unmarshal` — nested structs it delegates back through still get full required/default/constraint enforcement; also fixed a nil-slice-element panic and made slice validation aggregate errors across all elements instead of stopping at the first by @tushar2708
+* Added test coverage for the `UnmarshalInto`/`ValidateInto` type-erased entry points against `Register()`ed types by @tushar2708
+
+---
+
 ## [2.1.1] - 2026-08-17
 
 ### Changed
