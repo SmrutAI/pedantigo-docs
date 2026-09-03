@@ -11,6 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.1.3] - 2026-09-03
+
+### Changed
+
+* Precomputed the JSON deserialize plan at validator-creation time (instead of per-call reflection), and added safe handling for recursive types via register-before-populate back-edges with a pointer-cycle guard and a configurable max recursion depth (default 3) — moving heavy reflection work out of the hot path and into `New[T]()`, by @tushar2708 in https://github.com/SmrutAI/pedantigo/pull/29
+* Clarified in docs that `required` is enforced only by `Unmarshal`/`NewModel`, not by `StructPartial`/`StructExcept`, by @tushar2708
+
+---
+
 ## [2.1.2] - 2026-09-02
 
 ### Changed
